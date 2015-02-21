@@ -23,7 +23,7 @@ var Commands = []cli.Command{
 
 var commandCreate = cli.Command{
 	Name:  "create",
-	Usage: "",
+	Usage: "Create new app",
 	Description: `
 `,
 	Action: doCreate,
@@ -31,7 +31,7 @@ var commandCreate = cli.Command{
 
 var commandStatus = cli.Command{
 	Name:  "status",
-	Usage: "",
+	Usage: "Show app status",
 	Description: `
 `,
 	Action: doStatus,
@@ -39,7 +39,7 @@ var commandStatus = cli.Command{
 
 var commandDeploy = cli.Command{
 	Name:  "deploy",
-	Usage: "",
+	Usage: "Deploy your app",
 	Description: `
 `,
 	Action: doDeploy,
@@ -47,7 +47,7 @@ var commandDeploy = cli.Command{
 
 var commandBuilds = cli.Command{
 	Name:  "builds",
-	Usage: "",
+	Usage: "Show builds",
 	Description: `
 `,
 	Action: doBuilds,
@@ -55,7 +55,7 @@ var commandBuilds = cli.Command{
 
 var commandOpen = cli.Command{
 	Name:  "open",
-	Usage: "",
+	Usage: "Open app page in browser",
 	Description: `
 `,
 	Action: doOpen,
@@ -63,7 +63,7 @@ var commandOpen = cli.Command{
 
 var commandQueue = cli.Command{
 	Name:  "queue",
-	Usage: "",
+	Usage: "Show build queue",
 	Description: `
 `,
 	Action: doQueue,
@@ -71,7 +71,7 @@ var commandQueue = cli.Command{
 
 var commandApps = cli.Command{
 	Name:  "apps",
-	Usage: "",
+	Usage: "List your apps",
 	Description: `
 `,
 	Action: doApps,
@@ -79,7 +79,7 @@ var commandApps = cli.Command{
 
 var commandLink = cli.Command{
 	Name:  "link",
-	Usage: "",
+	Usage: "Link your app to wercker",
 	Description: `
 `,
 	Action: doLink,
@@ -87,7 +87,7 @@ var commandLink = cli.Command{
 
 var commandLogin = cli.Command{
 	Name:  "login",
-	Usage: "",
+	Usage: "Log in to wercker",
 	Description: `
 `,
 	Action: doLogin,
@@ -95,7 +95,7 @@ var commandLogin = cli.Command{
 
 var commandLogout = cli.Command{
 	Name:  "logout",
-	Usage: "",
+	Usage: "Log out from wercker",
 	Description: `
 `,
 	Action: doLogout,
