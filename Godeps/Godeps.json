@@ -1,0 +1,11 @@
+{
+	"ImportPath": "github.com/dtan4/wk",
+	"GoVersion": "go1.4.2",
+	"Deps": [
+		{
+			"ImportPath": "github.com/codegangsta/cli",
+			"Comment": "1.0.0-74-g5ddbbe3",
+			"Rev": "5ddbbe33e57edd8bdbe29a1592cd842a82752074"
+		}
+	]
+}
