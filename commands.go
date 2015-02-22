@@ -1,9 +1,11 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
 
+	"github.com/bgentry/speakeasy"
 	"github.com/codegangsta/cli"
 )
 
@@ -146,6 +148,41 @@ func doLink(c *cli.Context) {
 }
 
 func doLogin(c *cli.Context) {
+	if len(c.Args()) != 0 {
+		cli.ShowCommandHelp(c, "login")
+		os.Exit(1)
+	}
+
+	var email string
+
+	fmt.Printf("Enter email: ")
+	_, err := fmt.Scanln(&email)
+
+	switch {
+	case err != nil && err.Error() != "unexpected newline":
+		fmt.Println(err.Error())
+		os.Exit(1)
+	case email == "":
+		fmt.Println("Email is required")
+		os.Exit(1)
+	}
+
+	password, err := readPassword("Enter password: ")
+
+	switch {
+	case err != nil && err.Error() != "unexpected newline":
+		fmt.Println(err.Error())
+		os.Exit(1)
+	case email == "":
+		fmt.Println("Password is required")
+		os.Exit(1)
+	}
+
+	fmt.Println(email)
+}
+
+func readPassword(prompt string) (password string, err error) {
+	return speakeasy.Ask("Enter password: ")
 }
 
 func doLogout(c *cli.Context) {

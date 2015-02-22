@@ -7,6 +7,10 @@
 			"Rev": "9fd32a8b3d3d3f9d43c341bfe098430e07609480"
 		},
 		{
+			"ImportPath": "github.com/bgentry/speakeasy",
+			"Rev": "5dfe43257d1f86b96484e760f2f0c4e2559089c7"
+		},
+		{
 			"ImportPath": "github.com/codegangsta/cli",
 			"Comment": "1.0.0-74-g5ddbbe3",
 			"Rev": "5ddbbe33e57edd8bdbe29a1592cd842a82752074"
