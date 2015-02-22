@@ -10,12 +10,12 @@ wk
 To install, use `go get`:
 
 ```bash
-$ go get -d github.com/Daisuke Fujita/wk
+$ go get -d github.com/dtan4/wk
 ```
 
 ## Contribution
 
-1. Fork ([https://github.com/Daisuke Fujita/wk/fork](https://github.com/Daisuke Fujita/wk/fork))
+1. Fork ([https://github.com/dtan4/wk/fork](https://github.com/dtan4/wk/fork))
 1. Create a feature branch
 1. Commit your changes
 1. Rebase your local changes against the master branch
@@ -25,4 +25,4 @@ $ go get -d github.com/Daisuke Fujita/wk
 
 ## Author
 
-[Daisuke Fujita](https://github.com/Daisuke Fujita)
+[Daisuke Fujita (@dtan4)](https://github.com/dtan4)
