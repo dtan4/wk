@@ -178,7 +178,34 @@ func doLogin(c *cli.Context) {
 		os.Exit(1)
 	}
 
-	fmt.Println(email)
+	nrc, err := hkclient.LoadNetRc()
+
+	if err != nil {
+		fmt.Println("Error has occured while loading netrc")
+		os.Exit(1)
+	}
+
+	err = nrc.SaveCreds(hostname, email, token)
+
+	if err != nil {
+		fmt.Println("Error has occured while saving netrc")
+		os.Exit(1)
+	}
+
+	fmt.Println("Logged in.")
+}
+
+type Login struct {
+	Username   string `json:"username"`
+	Password   string `json:"password"`
+	OauthScope bool   `json:"oauthScope"`
+}
+
+func attemptLogin(username, password string) (hostname, token string, err error) {
+	// -X POST
+	// -H "Content-Type: application/json"
+	// -d { "username": username, "password": password, "oauthScope": "cli" }
+	// https://app.wercker.com/api/1.0/oauth/basicauthaccesstoken
 }
 
 func readPassword(prompt string) (password string, err error) {
