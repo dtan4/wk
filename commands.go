@@ -7,6 +7,8 @@ import (
 
 	"github.com/bgentry/speakeasy"
 	"github.com/codegangsta/cli"
+
+	"github.com/dtan4/wk/schema"
 )
 
 var Commands = []cli.Command{
@@ -153,17 +155,17 @@ func doLogin(c *cli.Context) {
 		os.Exit(1)
 	}
 
-	var email string
+	var username string
 
-	fmt.Printf("Enter email: ")
-	_, err := fmt.Scanln(&email)
+	fmt.Printf("Enter username: ")
+	_, err := fmt.Scanln(&username)
 
 	switch {
 	case err != nil && err.Error() != "unexpected newline":
 		fmt.Println(err.Error())
 		os.Exit(1)
-	case email == "":
-		fmt.Println("Email is required")
+	case username == "":
+		fmt.Println("Username is required")
 		os.Exit(1)
 	}
 
@@ -173,19 +175,27 @@ func doLogin(c *cli.Context) {
 	case err != nil && err.Error() != "unexpected newline":
 		fmt.Println(err.Error())
 		os.Exit(1)
-	case email == "":
+	case password == "":
 		fmt.Println("Password is required")
 		os.Exit(1)
 	}
 
-	nrc, err := hkclient.LoadNetRc()
+	hostname, token, err := attemptLogin(username, password)
+
+	if err != nil {
+		fmt.Println("Error has occured while login: ")
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	nrc, err := LoadNetRc()
 
 	if err != nil {
 		fmt.Println("Error has occured while loading netrc")
 		os.Exit(1)
 	}
 
-	err = nrc.SaveCreds(hostname, email, token)
+	err = nrc.SaveCreds(hostname, username, token)
 
 	if err != nil {
 		fmt.Println("Error has occured while saving netrc")
@@ -195,17 +205,22 @@ func doLogin(c *cli.Context) {
 	fmt.Println("Logged in.")
 }
 
-type Login struct {
-	Username   string `json:"username"`
-	Password   string `json:"password"`
-	OauthScope bool   `json:"oauthScope"`
-}
-
 func attemptLogin(username, password string) (hostname, token string, err error) {
-	// -X POST
-	// -H "Content-Type: application/json"
-	// -d { "username": username, "password": password, "oauthScope": "cli" }
-	// https://app.wercker.com/api/1.0/oauth/basicauthaccesstoken
+	client := Client{Endpoint: "https://app.wercker.com/api/1.0"}
+	opts := schema.LoginOpts{
+		Username:   username,
+		Password:   password,
+		OauthScope: "cli",
+	}
+	var loginRes schema.Login
+	err = client.Post(&loginRes, "/oauth/basicauthaccesstoken", opts)
+
+	if err != nil {
+		return "", "", err
+	}
+
+	// TODO: set hostname dynamically
+	return "app.wercker.com", loginRes.Data.AccessToken, nil
 }
 
 func readPassword(prompt string) (password string, err error) {
