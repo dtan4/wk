@@ -3,11 +3,6 @@ build:
   steps:
     - wercker/golint
     - script:
-        name: install godep
-        code: |
-          go get github.com/tools/godep
-    - script:
-    - script:
         name: go build
         code: |
           godep go build ./...
