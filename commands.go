@@ -228,6 +228,28 @@ func readPassword(prompt string) (password string, err error) {
 }
 
 func doLogout(c *cli.Context) {
+	if len(c.Args()) != 0 {
+		cli.ShowCommandHelp(c, "logout")
+		os.Exit(1)
+	}
+
+	nrc, err := LoadNetRc()
+
+	if err != nil {
+		fmt.Println("Error has occured while loading netrc")
+		os.Exit(1)
+	}
+
+	// TODO: set hostname dynamically
+	host := "app.wercker.com"
+	err = nrc.RemoveCreds(host)
+
+	if err != nil {
+		fmt.Println("Error has occured while saving netrc")
+		os.Exit(1)
+	}
+
+	fmt.Println("Logged out.")
 }
 
 func doTargets(c *cli.Context) {

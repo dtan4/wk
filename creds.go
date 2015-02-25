@@ -79,3 +79,15 @@ func (nrc *NetRc) SaveCreds(host, user, pass string) error {
 
 	return ioutil.WriteFile(netRcPath(), body, 0600)
 }
+
+func (nrc *NetRc) RemoveCreds(host string) error {
+	nrc.RemoveMachine(host)
+
+	body, err := nrc.MarshalText()
+
+	if err != nil {
+		return err
+	}
+
+	return ioutil.WriteFile(netRcPath(), body, 0600)
+}
