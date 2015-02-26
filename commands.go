@@ -141,6 +141,12 @@ func doQueue(c *cli.Context) {
 }
 
 func doApps(c *cli.Context) {
+	if len(c.Args()) != 0 {
+		cli.ShowCommandHelp(c, "apps")
+		os.Exit(1)
+	}
+
+	apps := getApps()
 }
 
 func doLink(c *cli.Context) {

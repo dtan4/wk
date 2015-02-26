@@ -50,13 +50,13 @@ type App struct {
 	Author               string               `json:"author"`
 	Date                 string               `json:"date"`
 	BadgeKey             string               `json:"badgeKey"`
-	TotalChecks          integer              `json:"totalChecks"`
-	TotalChecksDone      integer              `json:"totalChecksDone"`
+	TotalChecks          int                  `json:"totalChecks"`
+	TotalChecksDone      int                  `json:"totalChecksDone"`
 	Status               string               `json:"status"`
 	BaseUrl              string               `json:"baseUrl"`
 	AllowedActions       []string             `json:"allowedActions"`
 	ProjectFollowers     []AppProjectFollower `json:"projectFollowers"`
-	TotalFollwers        integer              `json:"totalFollowers"`
+	TotalFollwers        int                  `json:"totalFollowers"`
 	IsFollower           bool                 `json:"isFollower"`
 	RealtimeBuilds       bool                 `json:"realtimeBuilds"`
 	DailyBuilds          bool                 `json:"dailyBuilds"`
@@ -65,11 +65,11 @@ type App struct {
 	DailyDeploys         bool                 `json:"dailyDeploys"`
 	WeeklyDeploys        bool                 `json:"weeklyDeploys"`
 	Privacy              string               `json:"privacy"`
-	Version              integer              `json:"version"`
+	Version              int                  `json:"version"`
 	Nudges               []string             `json:"nudges"`
 	DeployTargets        []AppDeployTarget    `json:"deployTargets"`
-	FailedDeployCount    integer              `json:"failedDeployCount"`
-	DeployWarnings       integer              `json:"deployWarnings"`
+	FailedDeployCount    int                  `json:"failedDeployCount"`
+	DeployWarnings       int                  `json:"deployWarnings"`
 	HasWebHook           bool                 `json:"hasWebHook"`
 	Registry             string               `json:"registry"`
 	PrivateAllowed       bool                 `json:"privateAllowed"`
